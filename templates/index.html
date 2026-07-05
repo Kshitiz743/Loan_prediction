@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Prediction</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="card">
+
+    <div class="logo">
+        🏦
+    </div>
+
+    <h1>Loan Approval Predictor</h1>
+
+    <p>Check whether your loan is likely to be approved.</p>
+
+    <form method="POST">
+
+        <div class="field">
+            <label>Age</label>
+            <input type="number" name="Age" placeholder="Enter your age" required>
+        </div>
+
+        <div class="field">
+            <label>Income (₹)</label>
+            <input type="number" name="Income" placeholder="Annual Income" required>
+        </div>
+
+        <div class="field">
+            <label>Loan Amount (₹)</label>
+            <input type="number" name="LoanAmount" placeholder="Required Loan" required>
+        </div>
+
+        <div class="field">
+            <label>Credit Score</label>
+            <input type="number" name="CreditScore" placeholder="300 - 900" required>
+        </div>
+
+        <button>Predict Loan Status</button>
+
+    </form>
+
+    {% if prediction %}
+    <div class="prediction
+        {% if 'Approved' in prediction %}
+            approved
+        {% else %}
+            rejected
+        {% endif %}
+    ">
+        {{ prediction }}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
